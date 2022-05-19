@@ -30,6 +30,8 @@ public class AthleteController {
     }
 
     @PostMapping("/athletes")
+//    For this to work in Swagger, remove the string/type it is expecting for the foreign key: in this case, when
+//    adding a new athlete, removing the string it is expecting in the athletes field: athlete []
     public ResponseEntity<Athlete> createAthlete(@RequestBody Athlete athlete){
         Athlete result = athleteRepository.save(athlete);
         return ResponseEntity
