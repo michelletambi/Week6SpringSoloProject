@@ -16,17 +16,20 @@ public class Athlete {
     private String gender;
     private String country;
 
+    private Sport sport;
+
 //    no args constructor
     public Athlete() {
     }
 
-    public Athlete(Long id, String firstName, String lastName, int age, String gender, String country) {
+    public Athlete(Long id, String firstName, String lastName, int age, String gender, String country, Sport sport) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.gender = gender;
         this.country = country;
+        this.sport = sport;
     }
 
 //    getters and setters
@@ -77,5 +80,13 @@ public class Athlete {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public Sport getSport() {
+        return sport;
+    }
+
+    public void setSport(Sport sport) {
+        this.sport = sport;
     }
 }
