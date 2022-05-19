@@ -23,7 +23,6 @@ public class Athlete {
 
 //    getters and setters
 
-
     public Long getId() {
         return id;
     }
