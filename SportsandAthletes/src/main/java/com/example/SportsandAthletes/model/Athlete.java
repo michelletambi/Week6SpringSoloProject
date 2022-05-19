@@ -1,9 +1,6 @@
 package com.example.SportsandAthletes.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Athlete {
@@ -15,7 +12,8 @@ public class Athlete {
     private int age;
     private String gender;
     private String country;
-
+    @ManyToOne
+//    athlete has a foreign key to Sport
     private Sport sport;
 
 //    no args constructor
