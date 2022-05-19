@@ -13,7 +13,8 @@ public class Athlete {
     private String lastName;
     private String gender;
     private String country;
-
+//  We ignore "athletes" because otherwise, we get an athlete object that contains a Sport object that contains an athlete
+//    forever and ever amen.
     @JsonIgnoreProperties({"athletes"})
     @ManyToOne
 //    athlete has a foreign key to Sport

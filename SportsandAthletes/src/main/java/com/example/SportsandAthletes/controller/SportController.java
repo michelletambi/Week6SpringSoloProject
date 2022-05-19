@@ -18,7 +18,7 @@ public class SportController {
 
 @Autowired
 private final SportRepository sportRepository;
-
+    //    Constructor
     public SportController(SportRepository sportRepository) {
         this.sportRepository = sportRepository;
     }

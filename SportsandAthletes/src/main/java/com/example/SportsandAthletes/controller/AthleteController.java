@@ -16,7 +16,7 @@ public class AthleteController {
 
     @Autowired
     private final AthleteRepository athleteRepository;
-
+//    Constructor
     public AthleteController(AthleteRepository athleteRepository) {
         this.athleteRepository = athleteRepository;
     }
