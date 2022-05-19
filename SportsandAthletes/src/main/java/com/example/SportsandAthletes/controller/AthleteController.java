@@ -5,6 +5,8 @@ import com.example.SportsandAthletes.repository.AthleteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -13,15 +15,26 @@ import java.util.List;
 public class AthleteController {
 
     @Autowired
-    AthleteRepository athleteRepository;
+    private final AthleteRepository athleteRepository;
+
+    public AthleteController(AthleteRepository athleteRepository) {
+        this.athleteRepository = athleteRepository;
+    }
 
     @GetMapping("/athletes")
     public ResponseEntity<List<Athlete>> getAllAthlete(){
         List<Athlete> athletes = athleteRepository.findAll();
-        athletes = athleteRepository.findAll();
         return ResponseEntity
                 .ok()
                 .body(athletes);
+    }
+
+    @PostMapping("/athletes")
+    public ResponseEntity<Athlete> createAthlete(@RequestBody Athlete athlete){
+        Athlete result = athleteRepository.save(athlete);
+        return ResponseEntity
+                .ok()
+                .body(result);
     }
 
 }

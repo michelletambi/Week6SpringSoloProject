@@ -11,8 +11,8 @@ public class Sport {
     private Long id;
     private String name;
     private String location;
+    @JsonIgnoreProperties({"sport"})
     @OneToMany(mappedBy = "sportId", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties({"sportId"})
     private List<Athlete> athletes;
 
 //    no args constructor

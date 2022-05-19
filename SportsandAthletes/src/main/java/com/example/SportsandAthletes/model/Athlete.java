@@ -1,5 +1,7 @@
 package com.example.SportsandAthletes.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,6 +13,8 @@ public class Athlete {
     private String lastName;
     private String gender;
     private String country;
+
+    @JsonIgnoreProperties({"athletes"})
     @ManyToOne
 //    athlete has a foreign key to Sport
     private Sport sportId;
