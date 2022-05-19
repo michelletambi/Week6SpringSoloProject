@@ -1,5 +1,7 @@
 package com.example.SportsandAthletes.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 @Entity
@@ -9,7 +11,8 @@ public class Sport {
     private Long id;
     private String name;
     private String location;
-    @OneToMany(mappedBy = "sport", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sportId", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"sportId"})
     private List<Athlete> athletes;
 
 //    no args constructor

@@ -9,25 +9,23 @@ public class Athlete {
     private Long id;
     private String firstName;
     private String lastName;
-    private int age;
     private String gender;
     private String country;
     @ManyToOne
 //    athlete has a foreign key to Sport
-    private Sport sport;
+    private Sport sportId;
 
 //    no args constructor
     public Athlete() {
     }
 
-    public Athlete(Long id, String firstName, String lastName, int age, String gender, String country, Sport sport) {
+    public Athlete(Long id, String firstName, String lastName, String gender, String country, Sport sportId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
         this.gender = gender;
         this.country = country;
-        this.sport = sport;
+        this.sportId = sportId;
     }
 
 //    getters and setters
@@ -56,13 +54,6 @@ public class Athlete {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
 
     public String getGender() {
         return gender;
@@ -81,10 +72,10 @@ public class Athlete {
     }
 
     public Sport getSport() {
-        return sport;
+        return sportId;
     }
 
     public void setSport(Sport sport) {
-        this.sport = sport;
+        this.sportId = sport;
     }
 }
