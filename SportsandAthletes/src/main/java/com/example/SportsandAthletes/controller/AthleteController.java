@@ -44,4 +44,12 @@ public class AthleteController {
         athleteService.deleteAthlete(athleteId);
     }
 
+    @PutMapping(path = {"/athletes/{id}"})
+//    this allows us to change the athlete's country
+    public void updateAthleteCountry(
+            @PathVariable("id") Long athleteId,
+            @RequestParam(required = false) String country) {
+        athleteService.updateCountry(athleteId, country);
+    }
+
 }
