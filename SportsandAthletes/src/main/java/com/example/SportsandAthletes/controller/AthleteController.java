@@ -4,10 +4,7 @@ import com.example.SportsandAthletes.model.Athlete;
 import com.example.SportsandAthletes.repository.AthleteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,6 +34,11 @@ public class AthleteController {
         return ResponseEntity
                 .ok()
                 .body(result);
+    }
+
+    @DeleteMapping(path = {"/athletes/{id}"})
+    public void deleteAthlete(@PathVariable("id") Long athleteId) {
+        athleteService.deleteAthlete(athleteId);
     }
 
 }

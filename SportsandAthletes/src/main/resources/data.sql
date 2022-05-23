@@ -33,3 +33,4 @@ insert into ATHLETE (id, first_name, last_name, gender, country, sport_id_id) va
 insert into ATHLETE (id, first_name, last_name, gender, country, sport_id_id) values (23, 'Kizzee', 'Beaudry', 'Female', 'China', 6);
 insert into ATHLETE (id, first_name, last_name, gender, country, sport_id_id) values (24, 'Dinnie', 'Garrish', 'Female', 'Ireland', 6);
 insert into ATHLETE (id, first_name, last_name, gender, country, sport_id_id) values (25, 'Dawn', 'Rieme', 'Female', 'South Africa', 1);
+
