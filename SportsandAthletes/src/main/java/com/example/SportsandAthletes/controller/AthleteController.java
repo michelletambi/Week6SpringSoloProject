@@ -34,6 +34,8 @@ public class AthleteController {
 
     @GetMapping("/athletes/{id}")
 //    Get the athlete by the id
+//    You must use <Optional> otherwise results in a server error in Swagger.
+//    I think this is because it gives us the option to return nothing if the id does not exist.
     public ResponseEntity<Optional<Athlete>> getAthleteById(@PathVariable Long id){
         return new ResponseEntity<>(athleteRepository.findById(id), HttpStatus.OK);
     }
