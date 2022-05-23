@@ -2,6 +2,7 @@ package com.example.SportsandAthletes.controller;
 
 import com.example.SportsandAthletes.model.Athlete;
 import com.example.SportsandAthletes.repository.AthleteRepository;
+import com.example.SportsandAthletes.service.AthleteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +14,11 @@ public class AthleteController {
 
     @Autowired
     private final AthleteRepository athleteRepository;
+    private AthleteService athleteService;
 //    Constructor
-    public AthleteController(AthleteRepository athleteRepository) {
+    public AthleteController(AthleteRepository athleteRepository, AthleteService athleteService) {
         this.athleteRepository = athleteRepository;
+        this.athleteService = athleteService;
     }
 
     @GetMapping("/athletes")

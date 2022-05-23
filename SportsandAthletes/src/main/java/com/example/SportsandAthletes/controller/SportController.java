@@ -4,12 +4,10 @@ import com.example.SportsandAthletes.model.Athlete;
 import com.example.SportsandAthletes.model.Sport;
 import com.example.SportsandAthletes.repository.AthleteRepository;
 import com.example.SportsandAthletes.repository.SportRepository;
+import com.example.SportsandAthletes.service.SportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,9 +16,11 @@ public class SportController {
 
 @Autowired
 private final SportRepository sportRepository;
+private SportService sportService;
     //    Constructor
-    public SportController(SportRepository sportRepository) {
+    public SportController(SportRepository sportRepository, SportService sportService) {
         this.sportRepository = sportRepository;
+        this.sportService = sportService;
     }
 
     @GetMapping("/sports")
@@ -36,6 +36,11 @@ private final SportRepository sportRepository;
         return ResponseEntity
                 .ok()
                 .body(result);
+    }
+
+    @DeleteMapping("/sports/{id}")
+    public void deleteSport(@PathVariable("id") Long sportId){
+        sportService.deleteSport(sportId);
     }
 
 
