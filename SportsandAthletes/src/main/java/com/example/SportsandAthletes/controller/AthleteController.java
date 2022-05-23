@@ -4,10 +4,12 @@ import com.example.SportsandAthletes.model.Athlete;
 import com.example.SportsandAthletes.repository.AthleteRepository;
 import com.example.SportsandAthletes.service.AthleteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class AthleteController {
@@ -21,12 +23,19 @@ public class AthleteController {
         this.athleteService = athleteService;
     }
 
+
     @GetMapping("/athletes")
     public ResponseEntity<List<Athlete>> getAllAthlete(){
         List<Athlete> athletes = athleteRepository.findAll();
         return ResponseEntity
                 .ok()
                 .body(athletes);
+    }
+
+    @GetMapping("/athletes/{id}")
+//    Get the athlete by the id
+    public ResponseEntity<Optional<Athlete>> getAthleteById(@PathVariable Long id){
+        return new ResponseEntity<>(athleteRepository.findById(id), HttpStatus.OK);
     }
 
     @PostMapping("/athletes")
@@ -51,5 +60,4 @@ public class AthleteController {
             @RequestParam(required = false) String country) {
         athleteService.updateCountry(athleteId, country);
     }
-
 }
