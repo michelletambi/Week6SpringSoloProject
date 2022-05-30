@@ -17,7 +17,8 @@ public class AthleteController {
     @Autowired
     private final AthleteRepository athleteRepository;
     private AthleteService athleteService;
-//    Constructor
+
+    //    Constructor
     public AthleteController(AthleteRepository athleteRepository, AthleteService athleteService) {
         this.athleteRepository = athleteRepository;
         this.athleteService = athleteService;
@@ -25,25 +26,46 @@ public class AthleteController {
 
 
     @GetMapping("/athletes")
-    public ResponseEntity<List<Athlete>> getAllAthlete(){
+    public ResponseEntity<List<Athlete>> getAllAthlete() {
         List<Athlete> athletes = athleteRepository.findAll();
         return ResponseEntity
                 .ok()
                 .body(athletes);
     }
 
+//    Get all athletes from  specific country
+    @GetMapping("/athletes/country")
+    public ResponseEntity<List<Athlete>> getAllAthletesFromACountry
+    (@RequestParam(required = false, name = "country") String country) {
+        if (country != null) {
+            return new ResponseEntity<>(athleteRepository.findByCountry(country), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(athleteRepository.findAll(), HttpStatus.OK);
+        }
+    }
+
+//    Get all the female athletes
+    @GetMapping("athletes/gender")
+    public ResponseEntity<List<Athlete>> getAllOfAGender(@RequestParam(required = false, name = "gender") String gender){
+        if (gender != null) {
+            return new ResponseEntity<>(athleteRepository.findAllOfGender(gender), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(athleteRepository.findAll(), HttpStatus.OK);
+        }
+    }
+
     @GetMapping("/athletes/{id}")
 //    Get the athlete by the id
 //    You must use <Optional> otherwise results in a server error in Swagger.
 //    I think this is because it gives us the option to return nothing if the id does not exist.
-    public ResponseEntity<Optional<Athlete>> getAthleteById(@PathVariable Long id){
+    public ResponseEntity<Optional<Athlete>> getAthleteById(@PathVariable Long id) {
         return new ResponseEntity<>(athleteRepository.findById(id), HttpStatus.OK);
     }
 
     @PostMapping("/athletes")
 //    For this to work in Swagger, remove the string/type it is expecting for the foreign key: in this case, when
 //    adding a new athlete, removing the string it is expecting in the athletes field: athlete []
-    public ResponseEntity<Athlete> createAthlete(@RequestBody Athlete athlete){
+    public ResponseEntity<Athlete> createAthlete(@RequestBody Athlete athlete) {
         Athlete result = athleteRepository.save(athlete);
         return ResponseEntity
                 .ok()
@@ -62,4 +84,5 @@ public class AthleteController {
             @RequestParam(required = false) String country) {
         athleteService.updateCountry(athleteId, country);
     }
+
 }
